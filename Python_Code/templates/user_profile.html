@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+		<link href="../static/css/bootstrap-4.4.1.css" rel="stylesheet">
+	<style>
+	body {font-family: Arial, Helvetica, sans-serif;font-size: 0.9rem;line-height: 0.9;}
+            form {border: 4px solid #f1f1f1;width: 500px; margin: auto; text-align: center }
+
+            input[type=text], input[type=password], select
+            {
+                width: 250px;
+                padding: 14px, 20px;
+                margin-left: auto;
+                display: inline-block;
+                border: 2px solid #ccc;
+                box-sizing: border-box;
+				text-align: center
+            }
+
+            button 
+            {
+                background-color: teal ;
+                color: white;
+                padding: 10px 20px;
+                margin:auto;   
+                border: none;
+                cursor: pointer;
+                width: 200px;
+				
+            }
+            button:hover 
+            {
+                opacity: 1.0;
+            }
+            .cancelbtn 
+            {
+                width:auto;
+                padding: 10px 20px;
+                background-color:#E96264;
+            }
+            .deletebtn 
+            {
+                width:auto;
+                padding: 10px 20px;
+                background-color:red;
+				margin-left: 73%;
+            }
+            .imgcontainer
+            {
+                text-align: center;
+                margin: 24px 0 12px 0;
+            }
+            img.avatar
+            {
+                width: 20%;
+                border-radius: 20%;
+            }
+            .container
+            {
+                padding: 10px;
+            
+            }
+            span.pwd
+            {
+                float: right;
+                padding-top: 10px;
+            }
+
+            @media screen and (max-width: 300px) 
+            {
+                span.psw 
+                {
+                    display: block;
+                    float: none;
+                }
+            .cancelbtn 
+                {
+                width: 100%;
+                
+                }
+            }
+		.flashes
+			{
+				color: red;
+				text-align: center
+			}
+			label{text-align: center}
+           </style> 
+<title>My Profile</title>
+</head>
+
+<body>
+		<hr>
+	<nav class="navbar navbar-expand">
+	<div class="container">
+		<a href="/Home">Home</a>
+		<a href="/Products">Products</a>
+		<a href="/OnDemandRequest">On-Demand Requests</a>
+		<a href="/AboutUs">About Us</a>
+		<a href="/Logout">Logout</a>
+	
+	</div>
+</nav>
+	<hr>
+	 <center><h2> My Profile</h2></center>
+	<form method="post" style="background-size: auto"> 
+		<div>
+			<button type="button" class="deletebtn" onClick="ConfirmDelete()" >Delete Account</button>
+		</div>
+            <div class="imgcontainer">
+                <img src="../static/images/profile.png" 
+                alt="Avatar" class="avatar">
+            </div>
+		<div class="flashes">
+					{% for Savemessage in get_flashed_messages() %}
+						{{ Savemessage }}
+					{% endfor %}
+			</div>
+		<div class="container" method="post">
+                <label for="user_type"><b>Representing</b></label><br>
+                <select name="user_type" id="user_type" disabled>
+                    <option name="none">{{provider_type}}</option>
+                </select><br><br>
+                
+                <label for="provider_name" ><b>Hospital/ Vendor Name <b style="color: red"> *</b></b></label><br>
+                <input type="text" value={{provider_name}}  placeholder="Enter Hospital/ Vendor Name" name="provider_name" required ><br><br>
+                <label for="uname" ><b>Username<b style="color: red"> *</b></b></label><br>
+                <input type="text" value={{profile_name}} placeholder="Enter Username" name="uname" required ><br><br>
+                
+                <label for="pwd"><b>Password<b style="color: red"> *</b></b></label><br>
+                <input type="password" value={{profile_password}} placeholder="Enter Password" name="pwd" required><br><br>
+                
+                <label for="email"><b>Email ID<b style="color: red"> *</b></b></label><br>
+                <input type="text" value={{profile_email}} placeholder="Enter Email ID" name="email" required><br><br>
+                
+                <label for="num"><b>Phone Number<b style="color: red"> *</b></b></label><br>
+                <input type="text" value={{profile_phone}} placeholder="Enter Phone Number" name="num" required><br><br>
+                
+                <button type="submit" >Save</button> <br><br>
+				<button type="button" class="cancelbtn" action="/Home">Cancel</button>
+			 
+            </div>
+		
+	<script>
+		function ConfirmDelete()
+		{
+		  var x = confirm("Are you sure you want to delete?");
+		  if (x)
+			  window.location='/DeleteAccount';
+		  else
+			return false;
+		}
+		</script>
+</body>
+</html>

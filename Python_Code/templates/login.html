@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            "AVA Corp Login"
+        </title>
+        <meta name="viewpoint" content="width-device-width, initial-scale=1">
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+            form {border: 4px solid #f1f1f1;width: 500px; margin: auto; text-align: center }
+
+            input[type=text], input[type=password]
+            {
+                width:250px;
+                padding: 14px, 20px;
+                margin-left:auto;
+                display: inline-block;
+                border: 2px solid #ccc;
+                box-sizing: border-box;
+				text-align: center
+            }
+
+            button 
+            {
+                background-color: teal ;
+                color: white;
+                padding: 14px 20px;
+                margin: 2px 0;   
+                border: none;
+                cursor: pointer;
+                width: 250px;
+            }
+            button:hover 
+            {
+                opacity: 1.0;
+            }
+            .cancelbtn 
+            {
+                width:auto;
+                padding: 10px 20px;
+                background-color: red;
+            }
+            .imgcontainer
+            {
+                text-align: center;
+                margin: 24px 0 12px 0;
+            }
+            img.avatar
+            {
+                width: 20%;
+                border-radius: 20%;
+            }
+            .container
+            {
+                padding: 10px;
+            
+            }
+            span.pwd
+            {
+                float: right;
+                padding-top: 10px;
+            }
+
+            @media screen and (max-width: 300px) 
+            {
+                span.psw 
+                {
+                    display: block;
+                    float: none;
+                }
+            .cancelbtn 
+                {
+                width: 100%;
+                
+                }
+            }  
+			.flashes
+			{
+				color: red;
+				text-align: center
+			}
+           </style>   
+    </head>
+        <body>
+			
+            <h2><center>Login</center> </h2>
+			<form method="post">
+                <div class="imgcontainer">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1674/1674704.png" 
+                    alt="Avatar" class="avatar">
+                </div>
+				<div class="flashes">
+					{% for message in get_flashed_messages() %}
+						{{ message }}
+					{% endfor %}
+				</div>
+                <div class="container">
+                    <label for="uname"><b>Username</b></label><br>
+                    <input type="text" placeholder="Enter Username" name="uname" required><br><br>
+                    <label for="pwd"><b>Password</b></label><br>
+                    <input type="password" placeholder="Enter Password" name="pwd" required><br><br>
+                    <button type="submit">Login </button> <br><br>
+                    <button type="button" class="cancelbtn">Cancel</button><br><br>
+                    <b>New User?</b><a href="/Registration"> Sign up</a> 
+                </div>
+				    
+            </form>
+                
+            </form>
+
+        </body>
+        </html>

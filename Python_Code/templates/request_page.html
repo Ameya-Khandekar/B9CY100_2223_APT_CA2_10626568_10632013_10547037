@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+		<link href="../static/css/bootstrap-4.4.1.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{req_title}}</title>
+	<style>
+		
+		th{width: 200px;padding: 10px}
+		td{width: 400px;}
+	</style>
+</head>
+
+<body>
+	<hr>
+	<nav class="navbar navbar-expand">
+	<div class="container">
+		<a href="/Home">Home</a>
+		<a href="/Products">Products</a>
+		<a href="/OnDemandRequest">On-Demand Requests</a>
+		<a href="/New_Request">New Request</a>
+		<a href="/AboutUs">About Us</a>
+		<a href="/My_Profile">My Profile</a>
+		<a href="/Logout">Logout</a>
+	
+	</div>
+</nav>
+	<hr>
+	<br><br>
+	<h2 align="center" style="color: #007bff">{{req_title}}</h2><br>
+	<table align="center" width="1000px" style="background-color: aliceblue; text-align: left;border: 4px solid #f1f1f1; padding: 20px" >
+	<tbody>
+		<tr>
+	<th style="color: #007bff">Request Details</th>
+		</tr>
+
+		<tr>
+	<th >Description:</th><td>{{req_description}}</td>
+		</tr>	
+		
+	{%if req_dimensions != None%}
+		<tr>
+	<th>Request Dimensions:</th><td>{{req_dimensions}}</td>
+			</tr>
+	{%endif%}
+			
+	{%if req_quantity != None%}
+		<tr>
+	<th>Quantity:</th><td>{{req_quantity}}</td>
+			</tr>
+	{%endif%}
+			
+	{%if req_budget != None%}
+			<tr>
+	<th>Budget (€):</th><td>{{req_budget}}</td></tr>
+	{%endif%}
+			
+	{%if req_need_by_date != None%}
+				<tr>
+	<th>Need By Date:</th><td>{{req_need_by_date}}</td></tr>
+	{%endif%}
+			
+	{%if h_name != None%}
+		<tr>
+	<th style="color: #007bff">Requestor Details</th></tr>
+		<tr>
+	<th>Name:</th><td>{{h_name}}</td></tr>
+	{%endif%}
+			
+	{%if h_phone != None%}
+		<tr>
+	<th>Phone:</th><td>{{h_phone}}</td></tr>
+	{%endif%}
+			
+	{%if h_email != None%}
+			<tr>
+	<th>EmailID:</th><td>{{h_email}}</td></tr>
+	{%endif%}
+			
+		</tbody>	
+		</table>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="../static/css/bootstrap-4.4.1.css" rel="stylesheet">
+
+	<title>New Request</title>
+</head>
+<style>
+	input, select, textarea, submit {
+			display: block;
+			width: 100%;
+		margin: 0
+	}
+	form{width: 700px; margin: auto}
+	.flashes
+			{
+				color: red;
+				text-align: center
+			}
+</style>
+<body>
+<hr>
+	<nav class="navbar navbar-expand">
+	<div class="container">
+		<a href="/Home">Home</a>
+		<a href="/Products">Products</a>
+		<a href="/OnDemandRequest">On-Demand Requests</a>
+		<a href="/AboutUs">About Us</a>
+		<a href="/My_Profile">My Profile</a>
+		<a href="/Logout">Logout</a>
+	
+	</div>
+</nav>
+	<hr>
+	<div class="flashes">
+		{% if message != None%}
+			{% for message in get_flashed_messages() %}
+				{{ message }}
+			{% endfor %}
+		{% endif %}
+	</div>
+	
+            <h2><center>
+              New Product Request
+            </center></h2>
+			<div class="container">
+				<div class="row text-center" >
+					<div class="col-xs-14 col-lg-offset-3 col-lg-12">
+					  
+			<p>Enter the new request details below:</p>
+            <form action="#" id="new-request" method="post" id="new-request" style="background-color: aliceblue; background-size: auto"> 
+				
+                <label for="Req_title" >Request Title <strong style="color:red">*</strong></label><br>
+                <input type="text" id="Req_title" name="Req_title" required/><br>
+				<label for="Req_Description">Details <strong style="color:red">*</strong></label><br>
+                <textarea id="Req_Description" name="Req_Description" placeholder="Provide more details about the request" rows="4" cols="50" required></textarea><br>
+               
+				<label for="H_name">Requested by (Hospital)<strong style="color:red">*</strong></label><br>
+                <select name="hospitals" id="hospitals" style="width: 350px; margin: auto" required>
+					{%for l in allhospitals%}
+    			<option value={{l}} style="text-align: center">{{l}}</option>
+					{%endfor%}
+				</select><br>
+                <label for="Dimensions">Dimensions</label><br>
+                <input type="text" id="Dimensions" name="Dimensions" style="width: 150px; margin: auto; text-align: center"><br>
+				<label for="Budget">Budget(€)<strong style="color:red">*</strong></label><br>
+                <input type="number" id="Budget" name="Budget" required style="width: 150px; margin: auto; text-align: center"><br>
+                <label for="NeedByDate">Need By Date <strong style="color:red">*</strong></label><br>
+				<input type="date" id="NeedByDate" name="NeedByDate" onchange="DateValidate()" required style="width: 150px; margin: auto; text-align: center" required><br>
+				<label for="Quantity">Quantity <strong style="color:red">*</strong></label><br>
+                <input type="number" id="Quantity" name="Quantity" required style="width: 100px; margin: auto; text-align: center"><br>
+                <input type="submit" value="Submit" class="btn btn-primary" style="width: 100px; margin: auto; text-align: center">
+            </form>
+						</div>
+					</div>
+				</div>
+	
+	<script>
+	function DateValidate() {
+var UDate = document.getElementById("NeedByDate").value;
+var CurrDate = new Date();
+  
+if (new Date(UDate).getTime() <= CurrDate.getTime()) {
+    alert("The Date must be Bigger or Equal to today date");
+	document.getElementById("NeedByDate").value='';
+    return false;
+}
+return true;}
+	</script>
+        </body>
+</html>
